@@ -7,11 +7,11 @@ EXPOSE 5000
 
 ENV FLASK_ENV=production
 
-# CMD ["python", "app.py"]
+CMD ["python", "app.py"]
 
-COPY entrypoint.sh /app/entrypoint.sh
-# Make the entrypoint script executable
-RUN chmod +x entrypoint.sh
+# COPY entrypoint.sh /app/entrypoint.sh
+# # Make the entrypoint script executable
+# RUN chmod +x entrypoint.sh
 
-# Use the entrypoint script
-ENTRYPOINT ["/app/entrypoint.sh"]
+# # Use the entrypoint script
+# ENTRYPOINT ["/app/entrypoint.sh"]
