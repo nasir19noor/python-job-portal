@@ -2,12 +2,43 @@
 <html>
 <head>
     <title>Job Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="text"], select, input[type="submit"] {
+            padding: 8px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <h1>Job Search</h1>
     <form method="POST">
         <input type="text" name="keyword" placeholder="Job Role" required>
         <input type="text" name="location" placeholder="Location" required>
+        <select name="source" required>
+            <option value="all">All Sources</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="jobstreet">JobStreet</option>
+        </select>
         <input type="submit" value="Search">
     </form>
 </body>
