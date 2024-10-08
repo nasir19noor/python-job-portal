@@ -8,4 +8,14 @@ python -m venv venv
 
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-pip install flask requests beautifulsoup4
+pip install flask requests beautifulsoup4 psycopg2-binary Flask-SQLAlchemy
+
+
+CREATE TABLE user_searches (
+    id SERIAL PRIMARY KEY,
+    ip VARCHAR(50),
+    browser VARCHAR(255),
+    country VARCHAR(100),
+    job_role VARCHAR(255),
+    job_location VARCHAR(255)
+);
