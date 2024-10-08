@@ -117,7 +117,7 @@ def index():
             country = "Unknown"   
         
         # Save search info to database
-        save_user_search(user_ip, user_browser, ciity, country, keyword, location)
+        save_user_search(user_ip, user_browser, city, country, keyword, location)
 
         jobs = scrape_jobs(keyword, location, source)
         return render_template('results.html', jobs=jobs)
