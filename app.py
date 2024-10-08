@@ -25,7 +25,7 @@ class UserSearchData(db.Model):
 geoip_reader = Reader('GeoLite2-City.mmdb') 
 
 def save_user_search(ip, browser, city, country, job_role, location):
-    new_search = UserSearchData(ip_address=ip, browser=browser, city=city, country=country, search_role=job_role, search_location=location))
+    new_search = UserSearchData(ip_address=ip, browser=browser, city=city, country=country, search_role=job_role, search_location=location)
     db.session.add(new_search)
     db.session.commit()
   
