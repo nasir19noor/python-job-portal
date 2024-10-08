@@ -12,8 +12,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'localhost', 'postgresql://postgres:Love
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-class UserSearch(db.Model):
-    __tablename__   = 'user_search_data
+class UserSearchData(db.Model):
+    # __tablename__   = 'user_search_data'
     id              = db.Column(db.Integer, primary_key=True)
     ip_address      = db.Column(db.String(45), nullable=False)
     browser         = db.Column(db.Text, nullable=False)
