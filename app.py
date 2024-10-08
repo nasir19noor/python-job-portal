@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 #Database configuration
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Love1981@127.0.0.1/jobportal'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Love1981@127.0.0.1/jobportal'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -96,6 +96,18 @@ def scrape_jobs(keyword, location, source):
         jobstreet_jobs = scrape_jobstreet_jobs(keyword, location)
         return linkedin_jobs + jobstreet_jobs
 
+
+def get_client_ip():
+    if request.headers.getlist("X-Forwarded-For"):
+        # X-Forwarded-For header is a comma-separated list of IPs,
+        # with the left-most being the original client IP
+        return request.headers.getlist("X-Forwarded-For")[0].split(',')[0]
+    elif request.headers.get("X-Real-IP"):
+        return request.headers.get("X-Real-IP")
+    else:
+        return request.remote_addr
+    
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -104,8 +116,11 @@ def index():
         source   = request.form['source']
 
         #Get user's IP and browser information
-        user_ip      = request.remote_addr
+        # user_ip      = request.remote_addr
         user_browser = request.user_agent.string
+        user_ip = get_client_ip()
+        app.logger.info(f"User IP: {user_ip}")
+        app.logger.info(f"Request headers: {dict(request.headers)}")        
 
         #Get location informaton using GeoLite2
         try:
