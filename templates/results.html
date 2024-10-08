@@ -17,7 +17,12 @@
         h1 {
             color: #2c3e50;
             text-align: center;
+            margin-bottom: 10px;
+        }
+        .search-info {
+            text-align: center;
             margin-bottom: 30px;
+            color: #7f8c8d;
         }
         .job-card {
             background-color: #fff;
@@ -56,6 +61,9 @@
 </head>
 <body>
     <h1>Job Search Results</h1>
+    <div class="search-info">
+        <p>Showing results for <strong>{{ keyword }}</strong> in <strong>{{ location }}</strong></p>
+    </div>
     {% for job in jobs %}
         <div class="job-card">
             <h2><a href="{{ job.url }}" target="_blank">{{ job.title }}</a></h2>
@@ -64,6 +72,6 @@
             <p><strong>Source:</strong> {{ job.source }}</p>
         </div>
     {% endfor %}
-    <a href="/" class="new-search">New Search</a>
+    <a href="/?keyword={{ keyword | urlencode }}&location={{ location | urlencode }}" class="new-search">New Search</a>
 </body>
 </html>
