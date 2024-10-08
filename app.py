@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from geoip.database import Reader
+from geoip2.database import Reader
 import requests
 from bs4 import BeautifulSoup
 import os
