@@ -1,4 +1,4 @@
-# version: '3'
+version: '3'
 services:
   flask-app:
     build: .
@@ -8,3 +8,4 @@ services:
       - .:/app
     environment:
       - FLASK_ENV=production
+    network_mode: host  
